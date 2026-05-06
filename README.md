@@ -9,15 +9,14 @@ Requires Python 3.11+ and an Anthropic API key.
 ```bash
 pip install ".[dev]"
 
-cp .env.example .env
-# Edit .env and paste your key into ANTHROPIC_API_KEY.
-
 embedding-recommender \
   --input samples/pois_nova_real.csv \
   --intent-category similarity_search \
   --intent-description "find points of interest semantically similar to a given example" \
   --output-dir reports/
 ```
+
+If `ANTHROPIC_API_KEY` is not in the environment or in a `.env` file, the tool prompts for it on stdin and the input is hidden. Paste the key once and the run proceeds. To skip the prompt on future runs, save the key to `.env`: `cp .env.example .env`, then edit the `ANTHROPIC_API_KEY=` line.
 
 The report lands at `reports/report.md`. The included sample (`samples/pois_nova_real.csv`) is real OSM amenity data, around 4,000 points across inner Northern Virginia. It is checked in. No need to rebuild it. The build pipeline (`samples/build_real_sample.sh`, `samples/convert_osm_to_csv.py`) is checked in for reproducibility but is not part of the run path.
 

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "embedding-recommender"
-version = "0.1.0"
+version = "0.1.1"
 description = "Recommends vector embedding strategies for geospatial datasets."
 readme = "README.md"
 requires-python = ">=3.11"
