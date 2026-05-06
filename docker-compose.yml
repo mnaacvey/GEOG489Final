@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  recommender:
+    build: .
+    image: embedding-recommender:0.1.0
+    # Pass the API key from the host environment or a .env file.
+    environment:
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY}
+      - ANTHROPIC_MODEL=${ANTHROPIC_MODEL:-claude-sonnet-4-5}
+    # Mount a host directory for input CSVs and another for output reports.
+    # Adjust the host paths to match your setup.
+    volumes:
+      - ./samples:/data:ro
+      - ./reports:/reports
+    # Default command shows help. Override at run time, e.g.:
+    #   docker compose run --rm recommender \
+    #     --input /data/pois_text_rich.csv \
+    #     --intent-category similarity_search \
+    #     --intent-description "find similar POIs" \
+    #     --output-dir /reports
+    command: ["--help"]

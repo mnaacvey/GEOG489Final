@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "embedding-recommender"
+version = "0.1.0"
+description = "Recommends vector embedding strategies for geospatial datasets."
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Richard Mace" }]
+dependencies = [
+    "pandas>=2.1",
+    "anthropic>=0.40",
+    "jsonschema>=4.21",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+]
+
+[project.scripts]
+embedding-recommender = "embedding_recommender.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+embedding_recommender = ["scaffolds/*.py"]
